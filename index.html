@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="utf-8">
+    <title>ANG03 Grid Example</title>
+
+    <link rel="stylesheet" type="text/css" href="css/ng-grid.css"/>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/ng-grid-2.0.13.debug.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="controllers.js"></script>
+    <script type="text/javascript" src="services.js"></script>
+</head>
+
+<body ng-controller="HomeController">
+
+<div id="logo"></div>
+
+<div id="container">
+    <div class="gridStyle" ng-grid="gridOptions">
+    </div>
+</div>
+</body>
+</html>
