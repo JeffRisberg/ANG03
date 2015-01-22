@@ -1,6 +1,3 @@
-// controllers.js
-var app = angular.module('myApp', ['ngGrid']);
-
 app.controller('HomeController', function ($scope) {
 
     $scope.myData = [
