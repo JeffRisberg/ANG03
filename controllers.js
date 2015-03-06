@@ -1,6 +1,3 @@
-// controllers.js
-var app = angular.module('myApp', ['ngGrid']);
-
 app.controller('HomeController', function ($scope) {
 
     $scope.myData = [
@@ -15,7 +12,7 @@ app.controller('HomeController', function ($scope) {
         data: 'myData',
         columnDefs: [
             {field: 'name', displayName: 'Name'},
-            {field: 'age', displayName: 'Age'}
+            {field: 'age', displayName: 'Age', cellClass: "text-right"}
         ]
     };
 });
