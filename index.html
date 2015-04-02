@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/ng-grid.css"/>
-    <link rel="stylesheet" type="text/css" href="css/wijmo.css" />
+    <link rel="stylesheet" type="text/css" href="css/wijmo.css"/>
     <link rel="stylesheet" type="text/css" href="css/styles.css"/>
 
     <script src="js/jquery-1.11.1.min.js"></script>
@@ -27,9 +27,11 @@
 <div id="logo"></div>
 
 <div id="container">
+    <h4>NG-Grid</h4>
     <div class="gridStyle" ng-grid="gridOptions">
     </div>
 
+    <h4>Wijmo Flex Grid</h4>
     <div>
         <wj-flex-grid id="adGroupList"
                       items-source="adGroupCollection"
@@ -93,7 +95,7 @@
                 <span class="glyphicon glyphicon-step-backward"></span>
             </button>
             <button type="button" class="btn" disabled style="width:100px">
-                {​{adGroupCollection.pageIndex + 1 | number}} / {​{adGroupCollection.pageCount | number}}
+                {{adGroupCollection.pageIndex + 1 | number}} / {{adGroupCollection.pageCount | number}}
             </button>
             <button type="button" class="btn" ng-click="adGroupCollection.moveToNextPage()">
                 <span class="glyphicon glyphicon-step-forward"></span>
