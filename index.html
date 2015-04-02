@@ -6,11 +6,17 @@
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/ng-grid.css"/>
+    <link rel="stylesheet" type="text/css" href="css/wijmo.css" />
     <link rel="stylesheet" type="text/css" href="css/styles.css"/>
 
-    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="js/angular.js"></script>
-    <script type="text/javascript" src="js/ng-grid-2.0.13.debug.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/angular.js"></script>
+
+    <script src="js/ng-grid-2.0.13.debug.js"></script>
+    <script src="js/wijmo.min.js"></script>
+    <script src="js/wijmo.grid.min.js"></script>
+    <script src="js/wijmo.angular.min.js"></script>
+
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="controllers.js"></script>
     <script type="text/javascript" src="services.js"></script>
@@ -24,12 +30,79 @@
     <div class="gridStyle" ng-grid="gridOptions">
     </div>
 
+    <div>
+        <wj-flex-grid id="adGroupList"
+                      items-source="adGroupCollection"
+                      headers-visibility="Column">
+            <wj-flex-grid-column header="Ad Group"
+                                 binding="name">
+                <a href="">{{$item.name}}</a>
+            </wj-flex-grid-column>
+            <wj-flex-grid-column header="Publisher"
+                                 binding="publisher">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column header="Account"
+                                 binding="account">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column header="Campaign"
+                                 binding="campaign">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column header="Ad Rotation"
+                                 binding="adRotation">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column header="End Date"
+                                 binding="date">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column header="Active"
+                                 binding="active">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column header="Network"
+                                 binding="network">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column header="Search Bid $"
+                                 binding="searchBid"
+                                 format="c">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column header="Impressions"
+                                 binding="impressions"
+                                 format="n0">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column header="Clicks"
+                                 binding="clicks"
+                                 format="n0">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column header="CTR"
+                                 binding="ctr"
+                                 format="p2">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column header="Cost"
+                                 binding="cost"
+                                 format="c">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column header="Revenue"
+                                 binding="revenue"
+                                 format="c">
+            </wj-flex-grid-column>
+        </wj-flex-grid>
 
-    <p>Change Sort</p>
-
-    <p>Add Row</p>
-
-    <p>Refresh</p>
+        <div class="btn-group">
+            <button type="button" class="btn" ng-click="adGroupCollection.moveToFirstPage()">
+                <span class="glyphicon glyphicon-fast-backward"></span>
+            </button>
+            <button type="button" class="btn" ng-click="adGroupCollection.moveToPreviousPage()">
+                <span class="glyphicon glyphicon-step-backward"></span>
+            </button>
+            <button type="button" class="btn" disabled style="width:100px">
+                {​{adGroupCollection.pageIndex + 1 | number}} / {​{adGroupCollection.pageCount | number}}
+            </button>
+            <button type="button" class="btn" ng-click="adGroupCollection.moveToNextPage()">
+                <span class="glyphicon glyphicon-step-forward"></span>
+            </button>
+            <button type="button" class="btn" ng-click="adGroupCollection.moveToLastPage()">
+                <span class="glyphicon glyphicon-fast-forward"></span>
+            </button>
+        </div>
+    </div>
 </div>
 </body>
 </html>
