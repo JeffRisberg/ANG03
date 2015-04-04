@@ -8,57 +8,14 @@
 </style>
 
 <div>
-    <wj-flex-grid id="campaignList"
-                  items-source="campaignCollection"
-                  selection-mode="None"
-                  headers-visibility="Column">
-        <wj-flex-grid-column header="Campaign"
-                             binding="name">
-            <a ng-click="editCampaign($item.id)">{{$item.name}}</a>
-        </wj-flex-grid-column>
-        <wj-flex-grid-column header="Publisher"
-                             binding="publisher">
-        </wj-flex-grid-column>
-        <wj-flex-grid-column header="Account"
-                             binding="account">
-        </wj-flex-grid-column>
-        <wj-flex-grid-column header="Ad Rotation"
-                             binding="adRotation">
-        </wj-flex-grid-column>
-        <wj-flex-grid-column header="End Date"
-                             binding="endDate">
-        </wj-flex-grid-column>
-        <wj-flex-grid-column header="Status"
-                             binding="status">
-        </wj-flex-grid-column>
-        <wj-flex-grid-column header="Network"
-                             binding="network">
-        </wj-flex-grid-column>
-        <wj-flex-grid-column header="Search Bid $"
-                             binding="searchBid"
-                             format="c">
-        </wj-flex-grid-column>
-        <wj-flex-grid-column header="Impressions"
-                             binding="impressions"
-                             format="n0">
-        </wj-flex-grid-column>
-        <wj-flex-grid-column header="Clicks"
-                             binding="clicks"
-                             format="n0">
-        </wj-flex-grid-column>
-        <wj-flex-grid-column header="CTR"
-                             binding="ctr"
-                             format="p2">
-        </wj-flex-grid-column>
-        <wj-flex-grid-column header="Cost"
-                             binding="cost"
-                             format="c">
-        </wj-flex-grid-column>
-        <wj-flex-grid-column header="Revenue"
-                             binding="revenue"
-                             format="c">
-        </wj-flex-grid-column>
-    </wj-flex-grid>
+    <div>
+        <ang03-grid id="campaignList"
+                    items-source="campaignCollection"
+                    column-layout="campaignColumnLayout"
+                    selection-mode="None"
+                    headers-visibility="Column">
+        </ang03-grid>
+    </div>
 
     <div class="btn-group">
         <button type="button" class="btn" ng-click="campaignCollection.moveToFirstPage()">

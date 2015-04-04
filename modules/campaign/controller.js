@@ -41,6 +41,24 @@ myApp.controller("CampaignCtrl", ['$scope', '$state', function ($scope, $state) 
     $scope.campaignCollection = new wijmo.collections.CollectionView(dataList);
     $scope.campaignCollection.pageSize = 20;
 
+    var x = '<a ng-click="editAd($item.id)">{{$item.name}}</a>';
+
+    $scope.campaignColumnLayout = [
+        {header: "Name", binding: "name" },
+        {header: "Account", binding: "account" },
+        {header: "Publisher", binding: "publisher"},
+        {header: "Status", binding: "status"},
+        {header: "End Date", binding: "endDate"},
+        {header: "Search Bid", binding: "searchBid", format: "c"},
+        {header: "Ad Rotation", binding: "adRotation"},
+        {header: "Impressions", binding: "impressions", format: 'n0'},
+        {header: "Clicks", binding: "clicks", format: 'n0'},
+        {header: "CTR", binding: "ctr", format: 'p2'},
+        {header: "CPC", binding: "cpc", format: "c"},
+        {header: "Cost", binding: "cost", format: "c"},
+        {header: "Revenue", binding: "revenue", format: "c"}
+        ];
+
     $scope.editCampaign = function (id) {
         $scope.campaign = null;
 
