@@ -1,0 +1,72 @@
+
+<div>
+    <wj-flex-grid id="campaignList"
+                  items-source="campaignCollection"
+                  selection-mode="None"
+                  headers-visibility="Column">
+        <wj-flex-grid-column header="Campaign"
+                             binding="name">
+            <a ng-click="editCampaign($item.id)">{{$item.name}}</a>
+        </wj-flex-grid-column>
+        <wj-flex-grid-column header="Publisher"
+                             binding="publisher">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column header="Account"
+                             binding="account">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column header="Ad Rotation"
+                             binding="adRotation">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column header="End Date"
+                             binding="date">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column header="Active"
+                             binding="active">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column header="Network"
+                             binding="network">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column header="Search Bid $"
+                             binding="searchBid"
+                             format="c">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column header="Impressions"
+                             binding="impressions"
+                             format="n0">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column header="Clicks"
+                             binding="clicks"
+                             format="n0">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column header="CTR"
+                             binding="ctr"
+                             format="p2">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column header="Cost"
+                             binding="cost"
+                             format="c">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column header="Revenue"
+                             binding="revenue"
+                             format="c">
+        </wj-flex-grid-column>
+    </wj-flex-grid>
+
+    <div class="btn-group">
+        <button type="button" class="btn" ng-click="campaignCollection.moveToFirstPage()">
+            <span class="glyphicon glyphicon-fast-backward"></span>
+        </button>
+        <button type="button" class="btn" ng-click="campaignCollection.moveToPreviousPage()">
+            <span class="glyphicon glyphicon-step-backward"></span>
+        </button>
+        <button type="button" class="btn" disabled style="width:100px; height:33px;">
+            {{campaignCollection.pageIndex + 1 | number}} / {{campaignCollection.pageCount | number}}
+        </button>
+        <button type="button" class="btn" ng-click="campaignCollection.moveToNextPage()">
+            <span class="glyphicon glyphicon-step-forward"></span>
+        </button>
+        <button type="button" class="btn" ng-click="campaignCollection.moveToLastPage()">
+            <span class="glyphicon glyphicon-fast-forward"></span>
+        </button>
+    </div>
+</div>

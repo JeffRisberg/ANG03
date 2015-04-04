@@ -1,31 +1,40 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #F8F7DB;
+    background-color: #f6f6f6;
     font-family: Arial, Helvetica, sans-serif;
     color: #091350;
 }
 
-#container {
-    width: 800px;
-    margin: 50px auto 20px;
-    padding: 10px;
-    background-color: #FEFDEB;
-    min-height: 300px;
-    overflow: visible;
-    border-radius: 6px;
-    -moz-box-shadow: 0 0 3px 2px #A1B41D;
-    -webkit-box-shadow: 0 0 3px 2px #A1B41D;
-    box-shadow: 0 0 3px 2px #A1B41D;
+.upperMenu {
+    min-height: 52px;
 }
 
-#header {
-    position: relative;
+.mainMenu {
+    min-height: 36px;
+    margin-bottom: 0;
 }
 
-#logo {
-    background: url('../img/ang03_logo.png') #93B3F7 no-repeat;
-    height: 48px;
+.mainMenu .navbar-nav li {
+    margin-left: 1px;
+    margin-right: 1px;
+    border-top: 5px solid #333;
+    background: #e6e6e6;
+}
+
+.mainMenu .navbar-nav li a {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 12px;
+    line-height: 13px;
+}
+
+.mainMenu .navbar-nav li.active {
+    border-top: 5px solid #007abe;
+}
+
+.mainMenu .navbar-nav li.active a {
+    background: white;
 }
 
 #content {
@@ -45,8 +54,68 @@ h1 {
     font-size: 150%;
 }
 
-.gridStyle {
-    border: 1px solid rgb(212, 212, 212);
-    width: 400px;
-    height: 300px
+.btn {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 12px;
+    line-height: 13px;
+}
+
+/** Bootstrap tables */
+.table tr th {
+    background: #a3b6c6;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font: bold 11px/13px tahoma, arial, verdana, sans-serif;
+    line-height: 13px;
+    font-weight: bold !important;
+}
+
+.table tr td {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font:  11px/13px tahoma, arial, verdana, sans-serif;
+    line-height: 13px;
+}
+
+
+/** NG-Grid tables */
+.ng-grid-style {
+    //padding-top: 9px;
+    //padding-bottom: 7px;
+    font:  11px/13px tahoma, arial, verdana, sans-serif;
+    line-height: 13px;
+    width: 100%;
+    height: 400px
+}
+
+.ngHeaderCell {
+    background: #a3b6c6 !important;
+}
+
+.ngHeaderText {
+    background: #a3b6c6 !important;
+    padding-top: 7px;
+}
+
+.ngAlignRight {
+    text-align: right
+}
+
+
+/** Wijmo tables */
+.wj-cell {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font:  11px/13px tahoma, arial, verdana, sans-serif;
+    line-height: 13px;
+}
+
+.wj-header {
+    background: #a3b6c6;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font: bold 11px/13px tahoma, arial, verdana, sans-serif;
+    line-height: 13px;
+    font-weight: bold !important;
 }
