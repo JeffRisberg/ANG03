@@ -2,6 +2,7 @@ myApp.controller("CampaignCtrl", ['$scope', '$state', function ($scope, $state) 
 
     var accounts = ['Google', 'Google', 'Bing'];
     var names = "Travel:Cruises,Travel:Hotel,Travel:Other,Car:Ford,Car:Chevrolet,Car:Kia,Car:Honda,Fall Promotion,Winter Promotion".split(',');
+    var statuses = "Active,Disabled,Removed,Completed".split(',');
 
     var dataList = [];
 
@@ -9,6 +10,8 @@ myApp.controller("CampaignCtrl", ['$scope', '$state', function ($scope, $state) 
         var account = accounts[Math.floor(Math.random() * accounts.length)];
         var publisher = account + "Test";
         var name = names[i % names.length];
+        var status = statuses[Math.floor(Math.random() * statuses.length)];
+        var searchBid = 1.45 + 34.9 * Math.random();
 
         var impressions = Math.floor(Math.random() * 10000);
         var ctr = 0.05 + 0.05 * Math.random();
@@ -21,8 +24,9 @@ myApp.controller("CampaignCtrl", ['$scope', '$state', function ($scope, $state) 
             account: account,
             publisher: publisher,
             name: name,
-            startDate: new Date(2015, i % 12, 1 + (i % 28)),
-            active: i % 4 == 0,
+            endDate: new Date(2015, i % 12, 1 + (i % 28)),
+            status: status,
+            searchBid: searchBid,
             impressions: impressions,
             clicks: clicks,
             ctr: ctr,
@@ -35,7 +39,7 @@ myApp.controller("CampaignCtrl", ['$scope', '$state', function ($scope, $state) 
     $scope.campaigns = dataList;
 
     $scope.campaignCollection = new wijmo.collections.CollectionView(dataList);
-    $scope.campaignCollection.pageSize = 10;
+    $scope.campaignCollection.pageSize = 20;
 
     $scope.editCampaign = function (id) {
         $scope.campaign = null;

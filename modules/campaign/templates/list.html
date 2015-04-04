@@ -1,4 +1,14 @@
 
+<style>
+    #campaignList {
+        height: 380px;
+        background-color: white;
+        box-shadow: 4px 4px 10px 0px rgba(50, 50, 50, 0.75);
+        margin-bottom: 12px;
+    }
+</style>
+
+
 <div>
     <wj-flex-grid id="campaignList"
                   items-source="campaignCollection"
@@ -18,10 +28,10 @@
                              binding="adRotation">
         </wj-flex-grid-column>
         <wj-flex-grid-column header="End Date"
-                             binding="date">
+                             binding="endDate">
         </wj-flex-grid-column>
-        <wj-flex-grid-column header="Active"
-                             binding="active">
+        <wj-flex-grid-column header="Status"
+                             binding="status">
         </wj-flex-grid-column>
         <wj-flex-grid-column header="Network"
                              binding="network">
