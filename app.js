@@ -53,6 +53,7 @@ myApp.directive('ang03Grid', [function () {
         scope: {
             itemsSource: '=',
             columnLayout: '=',
+            itemFormatter: '=',
             selectionMode: '@',
             headersVisibility: '@'
         },
@@ -83,6 +84,10 @@ myApp.directive('ang03Grid', [function () {
 
             if (scope.headersVisibility) {
                 flex.headersVisibility = scope.headersVisibility;
+            }
+
+            if (scope.itemFormatter) {
+                flex.itemFormatter = scope.itemFormatter;
             }
         }
     }

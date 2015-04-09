@@ -44,7 +44,8 @@ myApp.controller("CampaignCtrl", ['$scope', '$state', function ($scope, $state) 
     var x = '<a ng-click="editAd($item.id)">{{$item.name}}</a>';
 
     $scope.campaignColumnLayout = [
-        {header: "Name", binding: "name" },
+        {header: "Id", binding: "id"},
+        {header: "Name", binding: "name"},
         {header: "Account", binding: "account" },
         {header: "Publisher", binding: "publisher"},
         {header: "Status", binding: "status"},
@@ -57,7 +58,21 @@ myApp.controller("CampaignCtrl", ['$scope', '$state', function ($scope, $state) 
         {header: "CPC", binding: "cpc", format: "c"},
         {header: "Cost", binding: "cost", format: "c"},
         {header: "Revenue", binding: "revenue", format: "c"}
-        ];
+    ];
+
+    $scope.itemFormatter = function (panel, r, c, cell) {
+        if (panel.cellType == wijmo.grid.CellType.Cell) {
+            var flex = panel.grid;
+
+            if (c == 1) {
+                cell.innerHTML = buildCampaignLink(panel.getCellData(r, 0), panel.getCellData(r, 1));
+            }
+        }
+    };
+
+    function buildCampaignLink(id, name) {
+        return '<a ng-click="editCampaign(' + id + ')">' + name + '</a>';
+    }
 
     $scope.editCampaign = function (id) {
         $scope.campaign = null;
