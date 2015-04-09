@@ -1,4 +1,4 @@
-myApp.controller("CampaignCtrl", ['$scope', '$state', function ($scope, $state) {
+myApp.controller("CampaignCtrl", ['$scope', '$compile', '$state', function ($scope, $compile, $state) {
 
     var accounts = ['Google', 'Google', 'Bing'];
     var names = "Travel:Cruises,Travel:Hotel,Travel:Other,Car:Ford,Car:Chevrolet,Car:Kia,Car:Honda,Fall Promotion,Winter Promotion".split(',');
@@ -65,13 +65,19 @@ myApp.controller("CampaignCtrl", ['$scope', '$state', function ($scope, $state) 
             var flex = panel.grid;
 
             if (c == 1) {
-                cell.innerHTML = buildCampaignLink(panel.getCellData(r, 0), panel.getCellData(r, 1));
+                console.log(panel.rows[r].dataItem);
+
+                $scope.item = panel.rows[r].dataItem;
+
+                cell.innerHTML = buildCampaignLink($scope.item);
+
+                $compile(cell)($scope);
             }
         }
     };
 
-    function buildCampaignLink(id, name) {
-        return '<a ng-click="editCampaign(' + id + ')">' + name + '</a>';
+    function buildCampaignLink(campaign) {
+        return '<a ng-click="editCampaign(' + campaign.id + ')">' + campaign.name + '</a>';
     }
 
     $scope.editCampaign = function (id) {
