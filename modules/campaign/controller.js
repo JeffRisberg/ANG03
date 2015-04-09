@@ -1,4 +1,4 @@
-myApp.controller("CampaignCtrl", ['$scope', '$compile', '$state', function ($scope, $compile, $state) {
+myApp.controller("CampaignCtrl", ['$scope', '$interpolate', '$compile', '$state', function ($scope, $interpolate, $compile, $state) {
 
     var accounts = ['Google', 'Google', 'Bing'];
     var names = "Travel:Cruises,Travel:Hotel,Travel:Other,Car:Ford,Car:Chevrolet,Car:Kia,Car:Honda,Fall Promotion,Winter Promotion".split(',');
@@ -41,8 +41,6 @@ myApp.controller("CampaignCtrl", ['$scope', '$compile', '$state', function ($sco
     $scope.campaignCollection = new wijmo.collections.CollectionView(dataList);
     $scope.campaignCollection.pageSize = 20;
 
-    var x = '<a ng-click="editAd($item.id)">{{$item.name}}</a>';
-
     $scope.campaignColumnLayout = [
         {header: "Id", binding: "id"},
         {header: "Name", binding: "name"},
@@ -65,20 +63,17 @@ myApp.controller("CampaignCtrl", ['$scope', '$compile', '$state', function ($sco
             var flex = panel.grid;
 
             if (c == 1) {
-                console.log(panel.rows[r].dataItem);
+                $scope.$item = panel.rows[r].dataItem;
 
-                $scope.item = panel.rows[r].dataItem;
+                var template = '<a ng-click="editCampaign({{$item.id}})">{{$item.name}}</a>';
+                var innerHTML = $interpolate(template)($scope);
 
-                cell.innerHTML = buildCampaignLink($scope.item);
+                cell.innerHTML = innerHTML;
 
                 $compile(cell)($scope);
             }
         }
     };
-
-    function buildCampaignLink(campaign) {
-        return '<a ng-click="editCampaign(' + campaign.id + ')">' + campaign.name + '</a>';
-    }
 
     $scope.editCampaign = function (id) {
         $scope.campaign = null;
