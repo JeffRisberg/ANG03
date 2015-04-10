@@ -1,3 +1,7 @@
 <div ng-controller="CampaignCtrl">
+    <div class="alertMessage" ng-show="flash.getMessage()">
+        {{flash.getMessage()}}
+    </div>
+
     <div ui-view></div>
 </div>

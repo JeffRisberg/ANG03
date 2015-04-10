@@ -61,6 +61,13 @@ h1 {
     line-height: 13px;
 }
 
+.alertMessage {
+    width: 100%;
+    font-weight: bold;
+    background: #eea236;
+    padding-left: 15px;
+}
+
 /** Bootstrap tables */
 .table tr th {
     background: #a3b6c6;

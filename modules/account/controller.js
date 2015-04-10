@@ -1,4 +1,6 @@
-myApp.controller('AccountCtrl', ['$scope', '$state', function ($scope, $state) {
+myApp.controller('AccountCtrl', ['$scope', '$rootScope', '$state', 'flash', function ($scope, $rootScope, $state, flash) {
+
+    $scope.flash = flash;
 
     var names = "Paychex,Endurance,LearCapital,Dafiti,Atlassian,ShoeDazzle,Glasses.com,ZonaJobs.com,Alpha,Beta,Gamma,Delta,Zeta".split(',');
     var publishers = ['Google', 'Google', 'Google', 'Bing'];
@@ -9,6 +11,7 @@ myApp.controller('AccountCtrl', ['$scope', '$state', function ($scope, $state) {
         var name = names[i % names.length];
         var publisher = publishers[i % publishers.length];
         var accountId = "" + Math.floor(Math.random() * 100000);
+
         var impressions = Math.floor(Math.random() * 10000);
         var ctr = 0.05 + 0.05 * Math.random();
         var clicks = Math.floor(impressions * ctr);
@@ -71,22 +74,30 @@ myApp.controller('AccountCtrl', ['$scope', '$state', function ($scope, $state) {
     };
 
     $scope.editAccount = function (id) {
-        $scope.account = null;
+        $state.go("account.edit", {id: id});
+    };
 
-        // Find the account in the collection
-        for (var i = 0; i < $scope.accounts.length; i++) {
-            var account = $scope.accounts[i];
+    $rootScope.$on('$stateChangeStart', function (e, toState, toParams) {
+        if (toState.name === 'account.edit') {
+            $scope.account = null;
 
-            if (account.id == id) {
-                $scope.account = account;
-                break;
+            // Find the account in the collection
+            for (var i = 0; i < $scope.accounts.length; i++) {
+                var account = $scope.accounts[i];
+
+                if (account.id == toParams.id) {
+                    $scope.account = account;
+                    break;
+                }
+            }
+
+            if ($scope.account == null) {
+                flash.setMessage("Invalid Account");
+                e.preventDefault();
+                $state.go("account.list");
             }
         }
-
-        if ($scope.account !== null) {
-            $state.go("account.edit");
-        }
-    };
+    });
 
     $scope.addAccount = function () {
         $scope.accounts.push({title: $scope.addName, quantity: 1, price: $scope.addPrice});

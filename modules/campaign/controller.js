@@ -1,4 +1,6 @@
-myApp.controller("CampaignCtrl", ['$scope', '$interpolate', '$compile', '$state', function ($scope, $interpolate, $compile, $state) {
+myApp.controller("CampaignCtrl", ['$scope', '$rootScope', '$state', 'flash', '$interpolate', '$compile', function ($scope, $rootScope, $state, flash, $interpolate, $compile) {
+
+    $scope.flash = flash;
 
     var accounts = ['Google', 'Google', 'Bing'];
     var names = "Travel:Cruises,Travel:Hotel,Travel:Other,Car:Ford,Car:Chevrolet,Car:Kia,Car:Honda,Fall Promotion,Winter Promotion".split(',');
@@ -16,6 +18,8 @@ myApp.controller("CampaignCtrl", ['$scope', '$interpolate', '$compile', '$state'
         var impressions = Math.floor(Math.random() * 10000);
         var ctr = 0.05 + 0.05 * Math.random();
         var clicks = Math.floor(impressions * ctr);
+        var cpm = 0.15 + 0.90 * Math.random();
+        var cpc = 0.05 + 0.67 * Math.random();
         var cost = Math.random() * 45.0;
         var revenue = cost * 10.0 * Math.random();
 
@@ -30,7 +34,8 @@ myApp.controller("CampaignCtrl", ['$scope', '$interpolate', '$compile', '$state'
             impressions: impressions,
             clicks: clicks,
             ctr: ctr,
-            cpc: 0.03,
+            cpm: cpm,
+            cpc: cpc,
             cost: cost,
             revenue: revenue
         })
@@ -53,12 +58,13 @@ myApp.controller("CampaignCtrl", ['$scope', '$interpolate', '$compile', '$state'
         {header: "Impressions", binding: "impressions", format: 'n0'},
         {header: "Clicks", binding: "clicks", format: 'n0'},
         {header: "CTR", binding: "ctr", format: 'p2'},
+        {header: "CPM", binding: "cpm", format: "c"},
         {header: "CPC", binding: "cpc", format: "c"},
         {header: "Cost", binding: "cost", format: "c"},
         {header: "Revenue", binding: "revenue", format: "c"}
     ];
 
-    $scope.itemFormatter = function (panel, r, c, cell) {
+    $scope.campaignItemFormatter = function (panel, r, c, cell) {
         if (panel.cellType == wijmo.grid.CellType.Cell) {
             var flex = panel.grid;
 
@@ -76,20 +82,28 @@ myApp.controller("CampaignCtrl", ['$scope', '$interpolate', '$compile', '$state'
     };
 
     $scope.editCampaign = function (id) {
-        $scope.campaign = null;
+        $state.go("campaign.edit", {id: id});
+    };
 
-        // Find the campaign in the collection
-        for (var i = 0; i < $scope.campaignCollection.items.length; i++) {
-            var campaign = $scope.campaignCollection.items[i];
+    $rootScope.$on('$stateChangeStart', function(e, toState, toParams) {
+        if (toState.name === 'campaign.edit') {
+            $scope.campaign = null;
 
-            if (campaign.id == id) {
-                $scope.campaign = campaign;
-                break;
+            // Find the campaign in the collection
+            for (var i = 0; i < $scope.campaigns.length; i++) {
+                var campaign = $scope.campaigns[i];
+
+                if (campaign.id == toParams.id) {
+                    $scope.campaign = campaign;
+                    break;
+                }
+            }
+
+            if ($scope.campaign == null) {
+                flash.setMessage("Invalid Campaign");
+                e.preventDefault();
+                $state.go("campaign.list");
             }
         }
-
-        if ($scope.campaign !== null) {
-            $state.go("campaign.edit");
-        }
-    };
+    });
 }]);
